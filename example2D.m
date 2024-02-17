@@ -10,6 +10,7 @@ addpath('src')
 % Note that the monogenic signal is intended to on greyscale images (using it on
 % a colour image will result in the three channels being processed independently).
 I = imread('coins.png');
+I = rand(128,128);
 [Y,X] = size(I);
 
 % First we have to choose a set of centre-wavelengths for our filters,
@@ -27,7 +28,8 @@ cw = 20*1.5.^(0:4);
 % filters we can also choose the shape parameter (between 0 and 1), which
 % governs the bandwidth (0.41 gives a three-octave filter, 0.55 gives a two
 % octave filter)
-filtStruct = createMonogenicFilters(Y,X,cw,'lg',0.55);
+filtStruct = createMonogenicFilters(Y,X,cw,'gd',0.55);
+
 
 % Now we can use this structure to find the monogenic signal for the image
 [m1,m2,m3] = monogenicSignal(I,filtStruct);
